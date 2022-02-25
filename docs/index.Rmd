@@ -11,25 +11,38 @@ library(tidyverse)
 library(ggplot2)
 library(plotly)
 library(leaflet)
+
+setwd("~/Desktop/INFO-201-coding/a3-sarah02mun/docs")
+
+source("../source/line_plot.R")
 source("../source/scatterplot_matrix.R")
 source("../source/map.R")
-source("../source/line_plot.R")
 ```
 
 ## Introduction
 
-This report summarizes my exploration of the Vera Institute's data set, which analyzes the population of incarcerated peoples between the years of 1970 and 2018. Through this analysis, 
+This report summarizes my exploration of the Vera Institute's data set, which analyzes the population of incarcerated peoples between the years of 1970 and 2018. Through this analysis, we can take a closer look at how these 
 
 ```{r cars}
 summary(cars)
 ```
 
-## Including Plots
+## Chart 1: Comparing Black and White Demographics in 2018.
 
-You can also embed plots, for example:
+This chart shows how the incarcerated population of these two demographics have changed over time in King County. I chose these two demographics specifically because people of color, especially those in Black communities, are disproportionately affected by racial profiling and are five time more likely to be imprisoned than those in White communities. This graph shows how this trend is manifested in the King County prison system.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r, echo=FALSE}
+black_vs_white
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Chart 2: Incarceration Rates Between 1970 and 2018 in King County
+
+This chart shows how the total jail population in King County has changed over the course of the data set. According to the Vera Institute, this value is defined as the average daily number of people held in jail at any time during the year. 
+```{r, echo=FALSE}
+matrix
+```
+
+## Chart 3: Incarceration Across the U.S. in 2018
+```{r, echo=FALSE}
+incarceration_2018_map
+```
