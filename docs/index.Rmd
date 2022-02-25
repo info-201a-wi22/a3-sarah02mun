@@ -6,7 +6,14 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(leaflet)
+source("../source/scatterplot_matrix.R")
+source("../source/map.R")
+source("../source/line_plot.R")
 ```
 
 ## Introduction
