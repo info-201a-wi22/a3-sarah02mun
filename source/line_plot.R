@@ -7,30 +7,29 @@ library(tidyverse)
 library(ggplot2)
 incarceration <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
 
-# find the jail population for the state of Washington
-wa_stats <- incarceration %>%
-  filter(state == "WA") %>%
-  select(year, state, county_name, aapi_jail_pop, black_jail_pop, latinx_jail_pop, native_jail_pop, white_jail_pop, other_race_jail_pop, total_jail_pop)
 
-# make data frame that shows King County stats
-king_county <- wa_stats %>%
-  filter(county_name == "King County")
+# make data frame that shows average incarceration population by year for black
+# and white groups
+avg_black_white_by_year <- incarceration %>%
+  group_by(year) %>%
+  summarize(avg_black_year = mean(black_prison_pop, na.rm = TRUE), avg_white_year = mean(white_prison_pop, na.rm = TRUE))
+
 
 # make plot
-black_vs_white <- ggplot(data = king_county) +
+black_vs_white <- ggplot(data = avg_black_white_by_year) +
   
   # make line plot for Black population
-  geom_line(mapping = aes(x = year, y = black_jail_pop, color = "Black Pop")) +
+  geom_line(mapping = aes(x = year, y = avg_black_year, color = "Black Pop")) +
   
   # make line plot for White population
-  geom_line(mapping = aes(x = year, y = white_jail_pop, color = "White Pop")) +
+  geom_line(mapping = aes(x = year, y = avg_white_year, color = "White Pop")) +
   
   # add appropriate axis labels
   labs(
     x = "Year",
     y = "Incarcerated Population",
     color = "Legend",
-    title = "Comparing Black and White Incarceration Populations in King County"
+    title = "Comparing Black and White Incarceration Populations"
   ) +
   
   # label colors

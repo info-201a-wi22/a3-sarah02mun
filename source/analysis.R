@@ -16,24 +16,74 @@ incarceration <- incarceration %>%
 
 # Create a data frame which shows the population of incarcerated people by race
 pop_by_race <- incarceration %>%
-  select(year, state, county_name, aapi_jail_pop, black_jail_pop, latinx_jail_pop, native_jail_pop, white_jail_pop, other_race_jail_pop)
+  select(year, state, county_name, aapi_prison_pop, black_prison_pop, latinx_prison_pop, native_prison_pop, white_prison_pop, other_race_prison_pop)
 
 
-# Which state had the highest incarceration population in 2018?
-location_highest_2018 <- incarceration %>%
+# Make list of summary values
+summary_info <- list()
+
+# Which location had the highest incarceration population in 1970?
+summary_info$
+  location_highest_1970 <- incarceration %>%
   group_by(year) %>%
-  filter(total_jail_pop == max(total_jail_pop, na.rm = TRUE) & year == 2018) %>%
+  filter(total_prison_pop == max(total_prison_pop, na.rm = TRUE) & year == 1970) %>%
   pull(location)
 
-
-# Which state had the highest incarceration population in 2018?
-location_highest_1970 <- incarceration %>%
+# Which location had the highest incarceration population in 2016?
+summary_info$location_highest_2016 <- incarceration %>%
   group_by(year) %>%
-  filter(total_jail_pop == max(total_jail_pop, na.rm = TRUE) & year == 1970) %>%
+  filter(total_prison_pop == min(total_prison_pop, na.rm = TRUE) & year == 2016) %>%
   pull(location)
 
+# What was the average total prison population in 2016?
+summary_info$avg_total <- incarceration %>%
+  filter(year == 2016) %>%
+  summarize(avg_total = mean(total_jail_pop, na.rm = TRUE)) %>%
+  pull(avg_total)
 
-# Find the jail population for the state of Washington
-wa_stats <- incarceration %>%
-  filter(state == "WA") %>%
-  select(year, state, county_name, aapi_jail_pop, black_jail_pop, latinx_jail_pop, native_jail_pop, white_jail_pop, other_race_jail_pop, total_jail_pop)
+# Which racial group had the highest average prison population in 2016?
+summary_info$avg_aapi <- pop_by_race %>%
+  group_by(year) %>%
+  filter(year == 2016) %>%
+  summarize(avg_aapi_pop = mean(aapi_prison_pop, na.rm = TRUE)) %>%
+  pull(avg_aapi_pop)
+
+summary_info$avg_black <- pop_by_race %>%
+  filter(year == 2016) %>%
+  summarize(avg_black_pop = mean(black_prison_pop, na.rm = TRUE)) %>%
+  pull(avg_black_pop)
+
+summary_info$avg_latinx <- pop_by_race %>%
+  filter(year == 2016) %>%
+  summarize(avg_latinx = mean(latinx_prison_pop, na.rm = TRUE)) %>%
+  pull(avg_latinx)
+
+summary_info$avg_native <- pop_by_race %>%
+  filter(year == 2016) %>% 
+  summarize(avg_native_pop = mean(native_prison_pop, na.rm = TRUE)) %>%
+  pull(avg_native_pop)
+
+summary_info$avg_white <- pop_by_race %>%
+  filter(year == 2016) %>%
+  summarize(avg_white_pop = mean(white_prison_pop, na.rm = TRUE)) %>%
+  pull(avg_white_pop)
+
+summary_info$avg_other <- pop_by_race %>%
+  filter(year == 2016) %>%
+  summarize(avg_other_pop = mean(other_race_prison_pop, na.rm = TRUE)) %>%
+  pull(avg_other_pop)
+
+# What is the ratio between the average female prison population and the average 
+# male prison population in 2016?
+avg_male_pop <- incarceration %>%
+  filter(year == 2016) %>%
+  summarize(avg_male_pop = mean(male_prison_pop, na.rm = TRUE)) %>%
+  pull(avg_male_pop)
+
+avg_female_pop <- incarceration %>%
+  filter(year == 2016) %>%
+  summarize(avg_female_pop = mean(female_prison_pop, na.rm = TRUE)) %>%
+  pull(avg_female_pop)
+
+summary_info$ratio_male_female <- avg_male_pop / avg_female_pop
+
