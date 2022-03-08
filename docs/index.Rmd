@@ -20,34 +20,33 @@ source("../source/map.R")
 
 ## Introduction
 
-This report summarizes my exploration of the Vera Institute's data set, which analyzes the population of incarcerated peoples between the years of 1970 and 2016. This analysis also allows us to take a closer look at how different racial demographics make up the U.S. incarceration population. 
+This report summarizes my exploration of the Vera Institute's data set, which analyzes the population of incarcerated peoples between the years of 1970 and 2018. Due to lack of necessary data, however, I will be looking at data up until 2016. This analysis also allows us to take a closer look at how different racial demographics make up the U.S. incarceration population. 
 
 ## Summary Information
 
-In my exploration of the data set, I wanted to get an understanding of how the various demographics make up the incarcerated population specifically in the year 2016 - since this is the most recent year in the data set that had the necessary values. I found that the location with the highest incarceration population in 2016 was `r summary_info$location_highest_2016` compared to `r summary_info$location_highest_1970` in 1970. The average total incarcerated population in 2016 was `r summary_info$avg_total`. When we look at these demographics my race, we get that the AAPI population was `r summary_info$avg_aapi`, the Black population was `r summary_info$avg_black`, the Latinx population was `r summary_info$avg_latix`, the Native population was `r summary_info$avg_native`, the White population was `r summary_info$avg_white`, and the "other races" population was `r summary_info$avg_other`. Of all the racial demographics listed, it appears that the White demographic makes up the highest amount of the population of incarcerated people on average. Not only does this data set consider racial demographics, but it also takes note of sex. The ratio between the average female and male population in prisons for 2016 was `r summary_info$ratio_male_female`.
+In my exploration of the data set, I wanted to get an understanding of how the various demographics make up the incarcerated population specifically in the year 2016 - since this is the most recent year in the data set that had the necessary values. I found that the location with the highest incarceration population in 2016 was `r summary_info$location_highest_2016` compared to `r summary_info$location_highest_1970` in 1970. The average total incarcerated population in 2016 was `r summary_info$avg_total`. When we look at these demographics my race, we get that the AAPI population was `r summary_info$avg_aapi`, the Black population was `r summary_info$avg_black`, the Latinx population was `r summary_info$avg_latix`, the Native population was `r summary_info$avg_native`, the White population was `r summary_info$avg_white`, and the "other races" population was `r summary_info$avg_other`. Of all the racial demographics listed, it appears that, on average, Black Americans makes up the highest amount of the population of incarcerated people. Not only does this data set consider racial demographics, but it also takes note of sex. The ratio between the average female and male population in prisons for 2016 was `r summary_info$ratio_male_female`.
 
 ```{r, echo=FALSE}
 summary_info
 ```
 
-## Chart 1: Comparing Black and White Demographics in 2016.
+## Chart 1: Comparing Black and White Incarcerated Populations in the U.S.
 
-This chart shows how the incarcerated population of these two demographics have changed over time in King County. I chose these two demographics specifically because people of color, especially those in Black communities, are disproportionately affected by racial profiling and are five time more likely to be imprisoned than those in White communities.
-
+This chart shows how the incarcerated population of these two demographics have changed over time in King County. I chose these two demographics specifically because people of color, especially Black Americans, are disproportionately affected by racial profiling and are more likely to be incarcerated than White Americans In fact, an article by [_The Sentencing Project_](https://www.sentencingproject.org/publications/color-of-justice-racial-and-ethnic-disparity-in-state-prisons/) states that "Black Americans are incarcerated in state prisons at nearly 5 times the rate of white Americans". From this data, we can see that this finding proves to be true. The population of incarcerated Black people has been consistently higher than White populations from 1970 and 2016. 
 ```{r, echo=FALSE}
 black_vs_white
 ```
 
 ## Chart 2: Incarceration Rates Between 1970 and 2016 in King County
 
-This chart shows how the total prison population in King County has changed over the course of the data set. According to the Vera Institute, this value is defined as the average daily number of people held in prison at any time during the year. 
+This chart shows how the total prison population in King County has changed over the course of the data set. According to the Vera Institute, this value is defined as the average daily number of people held in prison at any time during the year. I chose to observe King County specifically because it gives us a closer understanding for how legislation in our local communities can strongly affect incarceration populations. When we understand how people are affected by the decisions by our local government, we as constituents can make more conscious efforts to seek out representatives who will push for legislation for the good of all that they represent. The plot shows an increase in King County's prison population up until its peak around 2000 where the population begins its drop. According to an article by [_Westside Seattle_](https://www.westsideseattle.com/west-seattle-herald/2013/09/04/king-county-jail-population-drops-significantly-over-13-years), this may be the result of a decision in 2002 by the State Legislature which "drastically cut down the prison time a person faces for low level drug offenses". 
 ```{r, echo=FALSE}
 total
 ```
 
 ## Chart 3: Incarceration Across the U.S. in 2016
 
-This chart shows how the prison population varies across the U.S.. From this graph, we can see that states with large populations and large cities have higher incarcerated populations than more rural areas. 
+This chart shows how the prison population varies across the U.S.. I hoped that this chart would provide a clearer picture for how incarceration differs for each state, thus pushing us to question what legislation is producing these high differences in incarceration. The map shows us that Arizona had the largest prison population in 2016. An article by [_AZ Central_](https://www.azcentral.com/story/news/local/arizona/2018/09/18/report-says-arizona-has-severe-prison-problem/1337474002/) states that the reason for this huge difference is the rise in charges for non-violent crimes (i.e., drug possession, drug distribution, driving under the influence, etc.). Many constituents are criticizing Arizona's decision to lengthen prison sentences for first-time offenders and repeated offenders of non-violent crimes. Firstly, it takes away from the population of tax-payers and reduces the amount of money that could be distributed to other areas of the state budget like education or other social services. Additionally, it makes it even more difficult for these incarcerated people to come back into society and pursue a job, housing, or treatment thus keeping them in a cycle of incarceration. 
 ```{r, echo=FALSE}
 map
 ```

@@ -32,7 +32,7 @@ summary_info$
 # Which location had the highest incarceration population in 2016?
 summary_info$location_highest_2016 <- incarceration %>%
   group_by(year) %>%
-  filter(total_prison_pop == min(total_prison_pop, na.rm = TRUE) & year == 2016) %>%
+  filter(total_prison_pop == max(total_prison_pop, na.rm = TRUE) & year == 2016) %>%
   pull(location)
 
 # What was the average total prison population in 2016?
